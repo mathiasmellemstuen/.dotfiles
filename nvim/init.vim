@@ -15,9 +15,19 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 Plug 'octol/vim-cpp-enhanced-highlight'
 
-Plug 'chrisbra/changesPlugin'
+Plug 'airblade/vim-gitgutter'
+
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+
+" For auto brackets
+Plug 'jiangmiao/auto-pairs'
+
+" Wakatime
+Plug 'wakatime/vim-wakatime'
 
 Plug 'mathiasmellemstuen/commander'
+
 
 call plug#end()
 
@@ -62,6 +72,7 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 noremap <leader>e <cmd>LspNextError<cr>
 noremap <leader>pe <cmd>LspPreviousError<cr>
 noremap <leader>d <cmd>LspDeclaration<cr>
+noremap <leader>i <cmd>LspHover<cr>
 
 " Mapping for going back to previous buffer 
 noremap <leader>b <cmd>bprev<cr>
@@ -81,8 +92,6 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
-inoremap { {}<left><cr><cr><up>
-
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_posix_standard = 1
@@ -96,3 +105,14 @@ highlight Pmenu ctermfg=red guibg=red
 
 highlight Search guibg=red guifg=white
 highlight Search cterm=None ctermbg=red ctermfg=white
+
+" Setting up lualine
+lua require'lualine'.setup { options = { theme = 'molokai'}}
+
+au BufRead,BufNewFile *.tpp set filetype=cpp
+
+"Gitgutter always have sign column open
+set signcolumn=yes
+
+" Yellow selection background in visual mode
+highlight Visual cterm=bold ctermbg=Brown ctermfg=NONE
